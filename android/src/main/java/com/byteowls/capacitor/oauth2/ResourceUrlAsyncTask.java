@@ -35,10 +35,12 @@ public class ResourceUrlAsyncTask extends AsyncTask<String, Void, ResourceCallRe
         String resourceUrl = options.getResourceUrl();
         ResourceCallResult result = new ResourceCallResult();
         String accessToken = tokens[0];
+        String refreshToken = tokens[1];
 
         if (resourceUrl == null) {
             JSObject json = new JSObject();
             json.put("access_token", accessToken);
+            json.put("refresh_token", refreshToken);
             result.setResponse(json);
             return result;
         }
@@ -62,6 +64,7 @@ public class ResourceUrlAsyncTask extends AsyncTask<String, Void, ResourceCallRe
                 if (!result.isError()) {
                     JSObject json = new JSObject(jsonBody);
                     json.put("access_token", accessToken);
+					json.put("refresh_token", refreshToken);
                     result.setResponse(json);
                 } else {
                     result.setErrorMsg(jsonBody);

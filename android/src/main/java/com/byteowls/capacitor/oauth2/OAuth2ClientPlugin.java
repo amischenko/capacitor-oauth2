@@ -365,7 +365,7 @@ public class OAuth2ClientPlugin extends Plugin {
                                 if (accessTokenResponse != null) {
                                     if (oauth2Options.getResourceUrl() != null) {
                                         authState.performActionWithFreshTokens(authService, (accessToken, idToken, ex1)
-                                            -> new ResourceUrlAsyncTask(savedCall, oauth2Options, getLogTag()).execute(accessToken));
+                                            -> new ResourceUrlAsyncTask(savedCall, oauth2Options, getLogTag()).execute(accessToken, accessTokenResponse.refreshToken));
                                     } else {
                                         createJsObjAndResolve(savedCall, accessTokenResponse.jsonSerializeString());
                                     }
